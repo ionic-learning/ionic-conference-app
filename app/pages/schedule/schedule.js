@@ -1,4 +1,5 @@
 import {IonicApp, Page, Modal, Alert, NavController} from 'ionic/ionic';
+import {Http} from 'angular2/http';
 import {ConferenceData} from '../../providers/conference-data';
 import {UserData} from '../../providers/user-data';
 import {ScheduleFilterPage} from '../schedule-filter/schedule-filter';
@@ -9,11 +10,14 @@ import {SessionDetailPage} from '../session-detail/session-detail';
   templateUrl: 'build/pages/schedule/schedule.html'
 })
 export class SchedulePage {
-  constructor(app: IonicApp, nav: NavController, confData: ConferenceData, user: UserData) {
+  constructor(app: IonicApp, nav: NavController, confData: ConferenceData, user: UserData, http: Http) {
     this.app = app;
     this.nav = nav;
     this.confData = confData;
     this.user = user;
+
+    this.http = http;
+
 
     this.dayIndex = 0;
     this.queryText = '';
@@ -25,6 +29,38 @@ export class SchedulePage {
     this.groups = [];
 
     this.updateSchedule();
+    this.testLoadData();
+  }
+
+  testLoadData() {
+    this.http.get('http://192.168.31.128:8100/bbs/top10').subscribe(res => {
+      console.log(res.text());
+    console.log(JSON.stringify(this.processData(res.text())));
+    });
+  }
+
+  constructTopic(data) {
+    var topic = {
+      id : data._gid,
+      title : data.__text,
+      board : data._board,
+      count : data._count,
+      owner : data._owner
+    };
+
+    return topic;
+  }
+
+  processData (cnv) {
+    var x2js = new X2JS();
+    var aftCnv = x2js.xml_str2json(cnv);
+
+    var topics = [];
+    var topTopics = aftCnv.bbstop10.top;
+    for (var key in topTopics) {
+      topics.push(this.constructTopic(topTopics[key]));
+    }
+    return topics;
   }
 
   onPageDidEnter() {

@@ -1,5 +1,14 @@
 module.exports = {
-  proxies: null,
+  proxies: [
+    {
+      "path": "/bbs/top10",
+      "proxyUrl": "http://bbs.fudan.edu.cn/bbs/top10"
+    },
+    {
+      "path": "/bbs/tcon",
+      "proxyUrl": "http://bbs.fudan.edu.cn/bbs/tcon"
+    }
+  ],
 
   paths: {
     html : {
