@@ -16,7 +16,7 @@ export class TopicsProvider {
 
   loadTop10() {
     return new Promise(resolve => {
-        this.http.get(ApiEndpoint.url + '/top10'.subscribe(res => {
+        this.http.get('bbs/top10').subscribe(res => {
           console.log(res.text());
           let top10 = this.processData(res.text());
           console.log('Top 10 : ' + JSON.stringify(top10));
