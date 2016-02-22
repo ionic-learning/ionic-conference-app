@@ -5,11 +5,11 @@ import {TabsPage} from './pages/tabs/tabs';
 import {LoginPage} from './pages/login/login';
 import {SignupPage} from './pages/signup/signup';
 import {TutorialPage} from './pages/tutorial/tutorial';
-import {TopicsProvider} from './providers/TopicsProvider';
+import {TopicProvider} from './providers/topic-provider';
 
 @App({
   templateUrl: 'build/app.html',
-  providers: [ConferenceData, UserData, TopicsProvider],
+  providers: [ConferenceData, UserData, TopicProvider],
   config: {}
 })
 class ConferenceApp {

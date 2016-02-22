@@ -4,20 +4,17 @@ import {ConferenceData} from '../../providers/conference-data';
 import {UserData} from '../../providers/user-data';
 import {ScheduleFilterPage} from '../schedule-filter/schedule-filter';
 import {SessionDetailPage} from '../session-detail/session-detail';
-import {TopicsProvider} from '../../providers/TopicsProvider';
 
 
 @Page({
   templateUrl: 'build/pages/schedule/schedule.html'
 })
 export class SchedulePage {
-  constructor(app: IonicApp, nav: NavController, confData: ConferenceData, user: UserData, topics: TopicsProvider) {
+  constructor(app: IonicApp, nav: NavController, confData: ConferenceData, user: UserData) {
     this.app = app;
     this.nav = nav;
     this.confData = confData;
     this.user = user;
-
-    this.topics = topics;
 
 
     this.dayIndex = 0;
@@ -30,10 +27,6 @@ export class SchedulePage {
     this.groups = [];
 
     this.updateSchedule();
-
-    this.topics.loadTop10().then(data => {
-      console.log('success to load top 10 : ' + JSON.stringify(data));
-    });
   }
 
 

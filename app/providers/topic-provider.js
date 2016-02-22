@@ -8,7 +8,7 @@ import {ApiEndpoint} from './ApiEndpoint';
 
 
 @Injectable()
-export class TopicsProvider {
+export class TopicProvider {
   constructor(http:Http) {
     // inject the Http provider and set to this instance
     this.http = http;

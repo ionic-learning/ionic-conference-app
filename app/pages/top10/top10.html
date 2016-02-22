@@ -11,9 +11,26 @@
                  (refresh)="doRefresh($event)"
                  (pulling)="doPulling($event)">
     </ion-refresher>
-    <ion-list>
-        <ion-item *ngFor="#topic of topics" (click)="topicSelected(topic)">
-            {{topic.title}}
+    <ion-card *ngFor="#topic of topics" (click)="topicSelected(topic)">
+        <ion-item>
+            <ion-note item-left>
+                作者：{{topic.owner}}
+            </ion-note>
+            <ion-note item-right>
+                版面：{{topic.board}}
+            </ion-note>
+               
         </ion-item>
-    </ion-list>
+        <ion-card-content>
+            {{topic.title}}
+        </ion-card-content>
+        <ion-item>
+            <button primary clear item-left>
+                <ion-icon name="text"></ion-icon>
+                <div>{{topic.count}} Comments</div>
+            </button>
+            <ion-note item-right>
+            </ion-note>
+        </ion-item>
+    </ion-card>
 </ion-content>

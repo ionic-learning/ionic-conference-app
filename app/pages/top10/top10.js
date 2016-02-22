@@ -1,24 +1,24 @@
 import {IonicApp, Page, Modal, Alert, NavController} from 'ionic/ionic';
 import {Http} from 'angular2/http';
-import {TopicsProvider} from '../../providers/TopicsProvider';
-
+import {TopicProvider} from '../../providers/topic-provider';
+import {TopicDetailPage} from '../topic-detail/topic-detail';
 
 @Page({
   templateUrl: 'build/pages/top10/top10.html'
 })
 export class Top10Page {
-  constructor(app: IonicApp, nav: NavController, topicsProvider: TopicsProvider) {
+  constructor(app: IonicApp, nav: NavController, topicProvider: TopicProvider) {
     this.app = app;
     this.nav = nav;
 
-    this.topicsProvider = topicsProvider;
+    this.topicProvider = topicProvider;
 
     this.load();
   }
   
   load() {
       console.log('Loading Top10 ... ');
-      this.topicsProvider.loadTop10().then(data => {
+      this.topicProvider.loadTop10().then(data => {
           console.log('success to load top 10 : ' + JSON.stringify(data));
           this.topics = data;
       });
@@ -26,6 +26,7 @@ export class Top10Page {
   
   topicSelected(topic) {
       console.log('select : ' + JSON.stringify(topic));
+      this.nav.push(TopicDetailPage, topic);
   }
   
   doRefresh(refresher) {
