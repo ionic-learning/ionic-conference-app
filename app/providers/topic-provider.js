@@ -16,7 +16,7 @@ export class TopicProvider {
 
   loadTop10() {
     return new Promise(resolve => {
-        this.http.get('bbs/top10').subscribe(res => {
+        this.http.get('http://bbs.fudan.edu.cn/bbs/top10').subscribe(res => {
           let top10 = this.convertTop10(res.text());
           console.log('Top 10 : ' + JSON.stringify(top10));
           resolve(top10);
@@ -61,7 +61,7 @@ export class TopicProvider {
   }
   
   constructTopicDetailUrl(id, loaded_by, board) {
-	var url = '/bbs/tcon?new=1&f='+id;
+	var url = 'http://bbs.fudan.edu.cn/bbs/tcon?new=1&f='+id;
 	if (loaded_by == "BNAME") {
 		url += "&board=";
 		url += board;
@@ -156,7 +156,7 @@ export class TopicProvider {
 
           var post = {
             id : postRaw.attr.fid,
-            title : postRaw.valueWithPath("title"),
+            //title : postRaw.valueWithPath("title"),
             poster : {
               name : postRaw.valueWithPath("owner"),
               nick : postRaw.valueWithPath("nick"),
@@ -184,7 +184,6 @@ export class TopicProvider {
             posts.push(constructPost(postRaw));
           });
           var result = {
-            title: posts[0].title,
             count : posts.length,
             previous_cursor : previousCursor,
             next_cursor : nextCursor,

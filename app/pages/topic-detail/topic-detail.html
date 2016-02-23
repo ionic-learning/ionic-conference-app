@@ -1,7 +1,23 @@
 <ion-navbar *navbar>
   <ion-title>Topic</ion-title>
 </ion-navbar>
-
-<ion-content padding>
-  <h1>{{topic.title}}</h1>
+<ion-item-divider sticky>
+    {{topic.title}}
+</ion-item-divider>
+<ion-content>
+    <ion-card *ngFor="#post of posts">
+        <ion-item>
+            <ion-note item-left>
+                作者：{{post.poster.name}} ({{post.poster.nick}})
+            </ion-note>
+        </ion-item>
+        <ion-card-content>
+            {{post.body}}
+        </ion-card-content>
+        <ion-item>
+            <ion-note item-left>
+                {{post.post_time}}
+            </ion-note>
+        </ion-item>
+    </ion-card>
 </ion-content>

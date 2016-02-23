@@ -21,7 +21,7 @@ export class TopicDetailPage {
       this.topicProvider.loadDetail(this.topic.id, 'BNAME', this.topic.board)
         .then(data => {
           console.log('success to load topic detail : ' + JSON.stringify(data));
-          this.topics = data;
+          this.posts = data.posts;
       });
   }
 }
