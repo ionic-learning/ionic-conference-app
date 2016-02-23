@@ -6,10 +6,11 @@ import {LoginPage} from './pages/login/login';
 import {SignupPage} from './pages/signup/signup';
 import {TutorialPage} from './pages/tutorial/tutorial';
 import {TopicProvider} from './providers/topic-provider';
+import {SessionProvider} from './providers/session-provider';
 
 @App({
   templateUrl: 'build/app.html',
-  providers: [ConferenceData, UserData, TopicProvider],
+  providers: [ConferenceData, UserData, TopicProvider, SessionProvider],
   config: {}
 })
 class ConferenceApp {
