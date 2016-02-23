@@ -7,6 +7,10 @@ module.exports = {
     {
       "path": "/bbs/tcon",
       "proxyUrl": "http://bbs.fudan.edu.cn/bbs/tcon"
+    },
+    {
+      "path": "/bbs/login",
+      "proxyUrl": "http://bbs.fudan.edu.cn/bbs/login"
     }
   ],
 

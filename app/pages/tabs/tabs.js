@@ -14,7 +14,6 @@ export class TabsPage {
     // set the root pages for each tab
     this.tab1Root = SchedulePage;
     this.tab2Root = SpeakerListPage;
-    this.tab3Root = AboutPage;
-    this.tab4Root = Top10Page;
+    this.tab3Root = Top10Page;
   }
 }
