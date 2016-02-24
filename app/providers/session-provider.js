@@ -1,14 +1,14 @@
 import {Injectable} from 'angular2/core';
-import {Storage, LocalStorage, Events} from 'ionic/ionic';
+import {Storage, LocalStorage} from 'ionic/ionic';
 import {Http, Headers} from 'angular2/http';
 
 @Injectable()
 export class SessionProvider {
-  constructor(events: Events, http:Http) {
+  constructor(http:Http) {
     // inject the Http provider and set to this instance
     this.storage = new Storage(LocalStorage);
-    this.events = events;
     this.HAS_LOGGED_IN = 'hasLoggedIn';
+    this.USER_NAME = 'userName';
     this.http = http;
   }
   
@@ -36,6 +36,7 @@ export class SessionProvider {
             }
             return false;
         }
+        
         $.post('/bbs/login', body, function( data, statusText, xhr ) {
             console.log('status : ' +statusText);
             //console.log('response : ' + JSON.stringify(xhr));
@@ -51,14 +52,13 @@ export class SessionProvider {
     
   }
   
-  loadProfile() {
-      return new Promise(resolve => {
-      this.http.get('/bbs/info').subscribe(res => {
-          console.log('Info : ' + res.text());
-          resolve(res.text());
-        });
-       });
+  storeLoginSession(userName) {
+      this.storage.set(this.HAS_LOGGED_IN, true);
+      this.storage.set(this.USER_NAME, userName);
   }
-
+  
+  getLoginUser() {
+      return this.storage.get(this.USER_NAME);
+  }
   
 }

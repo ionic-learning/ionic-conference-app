@@ -3,6 +3,7 @@ import {SchedulePage} from '../schedule/schedule';
 import {SpeakerListPage} from '../speaker-list/speaker-list';
 import {AboutPage} from '../about/about';
 import {Top10Page} from '../top10/top10';
+import {ProfilePage} from '../profile/profile';
 import {Input} from 'angular2/core';
 
 
@@ -15,5 +16,6 @@ export class TabsPage {
     this.tab1Root = SchedulePage;
     this.tab2Root = SpeakerListPage;
     this.tab3Root = Top10Page;
+    this.tab4Root = ProfilePage;
   }
 }
