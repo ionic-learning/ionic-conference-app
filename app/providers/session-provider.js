@@ -30,12 +30,20 @@ export class SessionProvider {
             console.log('login error : ' + JSON.stringify(err));
         }, () => console.log('complete login')
         );*/
+        var isLoginSuccess = function (response) {
+            console.log(response);
+            return true;
+        }
         $.post('/bbs/login', body, function( data, statusText, xhr ) {
             console.log('status : ' +statusText);
-            console.log('response : ' + JSON.stringify(xhr));
+            //console.log('response : ' + JSON.stringify(xhr));
+            if (isLoginSuccess(xhr.responseText)) {
+                console.log('success');
+            }
         });
     });
     
   }
+
   
 }
