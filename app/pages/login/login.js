@@ -10,6 +10,7 @@ import {SessionProvider} from '../../providers/session-provider';
 export class LoginPage {
   constructor(nav: NavController, events: Events, sessionProvider: SessionProvider) {
     this.nav = nav;
+    this.storage = new Storage(LocalStorage);
     this.sessionProvider = sessionProvider;
 
     this.login = {};
@@ -25,7 +26,15 @@ export class LoginPage {
         console.log('try to login for :' + JSON.stringify(this.login));
       this.sessionProvider.login(this.login.username, this.login.password).then(data => {
           console.log('success to login : ' + JSON.stringify(data));
-          this.nav.push(TabsPage);
+          if (data == true) {
+              this.storage.set(this.HAS_LOGGED_IN, true);
+              this.events.publish('user:login');
+              this.sessionProvider.loadProfile().then(data => {
+                  console.log(data);
+              });
+              this.nav.push(TabsPage);
+          }
+          
       });
       
     }

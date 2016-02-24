@@ -11,6 +11,14 @@ module.exports = {
     {
       "path": "/bbs/login",
       "proxyUrl": "http://bbs.fudan.edu.cn/bbs/login"
+    },
+    {
+      "path": "/bbs/info",
+      "proxyUrl": "http://bbs.fudan.edu.cn/bbs/info"
+    },
+    {
+      "path": "/bbs/qry",
+      "proxyUrl": "http://bbs.fudan.edu.cn/bbs/qry"
     }
   ],
 

@@ -31,18 +31,33 @@ export class SessionProvider {
         }, () => console.log('complete login')
         );*/
         var isLoginSuccess = function (response) {
-            console.log(response);
-            return true;
+            if (response.indexOf('bbstop10') > -1) {
+                return true;
+            }
+            return false;
         }
         $.post('/bbs/login', body, function( data, statusText, xhr ) {
             console.log('status : ' +statusText);
             //console.log('response : ' + JSON.stringify(xhr));
             if (isLoginSuccess(xhr.responseText)) {
                 console.log('success');
+                resolve(true);
+            } else {
+                console.log('fail to login');
+                resolve(false);
             }
         });
     });
     
+  }
+  
+  loadProfile() {
+      return new Promise(resolve => {
+      this.http.get('/bbs/info').subscribe(res => {
+          console.log('Info : ' + res.text());
+          resolve(res.text());
+        });
+       });
   }
 
   
