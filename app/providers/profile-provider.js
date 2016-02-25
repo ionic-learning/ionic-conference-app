@@ -12,7 +12,7 @@ export class ProfileProvider {
 
     loadProfile(username) {
         console.log('Try to load user profile : ' + JSON.stringify(username));
-        var url = '/bbs/qry?u=' + username;
+        var url = 'http://bbs.fudan.edu.cn/bbs/qry?u=' + username;
         return new Promise(resolve => {
             this.http.get(url).subscribe(res => {
                 //console.log('Info : ' + res.text());
@@ -32,7 +32,7 @@ export class ProfileProvider {
     loadSelfProfile(user) {
         console.log('Try to load self profile ... ');
         return new Promise(resolve => {
-            this.http.get('/bbs/info').subscribe(res => {
+            this.http.get('http://bbs.fudan.edu.cn/bbs/info').subscribe(res => {
                 var profile = this.constructSelfProfile(res.text(), user);
                 this.loadSelfSignature(profile).then(data => {
                     resolve(data);
@@ -44,7 +44,7 @@ export class ProfileProvider {
     loadSelfSignature(user) {
         console.log('Try to load self signature ... ');
         return new Promise(resolve => {
-            this.http.get('/bbs/sig').subscribe(res => {
+            this.http.get('http://bbs.fudan.edu.cn/bbs/sig').subscribe(res => {
                 var profile = this.constructSelfSignature(res.text(), user);
                 resolve(profile);
             });

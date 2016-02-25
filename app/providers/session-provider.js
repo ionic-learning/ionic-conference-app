@@ -37,7 +37,7 @@ export class SessionProvider {
                 return false;
             }
 
-            $.post('/bbs/login', body, function (data, statusText, xhr) {
+            $.post('http://bbs.fudan.edu.cn/bbs/login', body, function (data, statusText, xhr) {
                 console.log('status : ' + statusText);
                 //console.log('response : ' + JSON.stringify(xhr));
                 if (isLoginSuccess(xhr.responseText)) {

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<widget id="io.ionic.conference" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-  <name>Ionic Conference</name>
+<widget id="cn.edu.fudan.ss.xulvcai" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+  <name>Fudan bbs client</name>
   <description>
-        An Ionic Framework application for the Ionic Conference.
+        Fudan bbs client.
   </description>
-  <author email="hi@ionicframework" href="http://ionicframework.com/">
-      Ionic Framework Team
+  <author email="xulvcai2008@gmail.com" href="http://ionicframework.com/">
+      Xu,Lvcai
   </author>
   <content src="index.html"/>
   <access origin="*"/>
