@@ -21,7 +21,8 @@ export class ProfilePage {
       console.log('Loading Profile ... ');
       var username = this.sessionProvider.getLoginUser();
       this.profileProvider.loadProfile(username).then(data => {
-          console.log('success to load profile : ' + data);
+          console.log('success to load profile : ' + JSON.stringify(data));
+          this.info = data;
       });
   }
   

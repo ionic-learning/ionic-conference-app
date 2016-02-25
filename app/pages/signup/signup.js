@@ -4,25 +4,25 @@ import {UserData} from '../../providers/user-data';
 
 
 @Page({
-  templateUrl: 'build/pages/signup/signup.html'
+    templateUrl: 'build/pages/signup/signup.html'
 })
 export class SignupPage {
-  constructor(nav: NavController, userData: UserData) {
-    this.nav = nav;
-    this.userData = userData;
+    constructor(nav: NavController, userData: UserData) {
+        this.nav = nav;
+        this.userData = userData;
 
-    this.signup = {};
-    this.submitted = false;
-  }
-
-  onSignup(form) {
-    this.submitted = true;
-
-    console.log(form);
-
-    if (form.valid) {
-      this.userData.signup();
-      this.nav.push(TabsPage);
+        this.signup = {};
+        this.submitted = false;
     }
-  }
+
+    onSignup(form) {
+        this.submitted = true;
+
+        console.log(form);
+
+        if (form.valid) {
+            this.userData.signup();
+            this.nav.push(TabsPage);
+        }
+    }
 }
