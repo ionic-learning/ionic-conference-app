@@ -24,4 +24,12 @@ export class TopicDetailPage {
           this.posts = data.posts;
       });
   }
+  
+  loadMore(infiniteScroll) {
+      console.log('Trying to load more topic detail ... ');
+      setTimeout(() => {
+          console.log('Async operation has ended');
+          infiniteScroll.complete();
+      }, 500);
+  }
 }

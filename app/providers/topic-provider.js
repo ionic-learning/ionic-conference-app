@@ -4,19 +4,21 @@
 
 import {Injectable} from 'angular2/core';
 import {Http} from 'angular2/http';
-import {ApiEndpoint} from './ApiEndpoint';
+import {ApiEndpoint} from './api-endpoint';
 
 
 @Injectable()
 export class TopicProvider {
-    constructor(http: Http) {
+    constructor(http: Http, apiEndpoint: ApiEndpoint) {
         // inject the Http provider and set to this instance
         this.http = http;
+        this.apiEndpoint = apiEndpoint;
     }
 
     loadTop10() {
         return new Promise(resolve => {
-            this.http.get('http://bbs.fudan.edu.cn/bbs/top10').subscribe(res => {
+            var url = this.apiEndpoint.getFullUrl('/bbs/top10');
+            this.http.get(url).subscribe(res => {
                 let top10 = this.convertTop10(res.text());
                 console.log('Top 10 : ' + JSON.stringify(top10));
                 resolve(top10);
@@ -61,7 +63,7 @@ export class TopicProvider {
     }
 
     constructTopicDetailUrl(id, loaded_by, board) {
-        var url = 'http://bbs.fudan.edu.cn/bbs/tcon?new=1&f=' + id;
+        var url = this.apiEndpoint.getFullUrl('/bbs/tcon?new=1&f=' + id);
         if (loaded_by == "BNAME") {
             url += "&board=";
             url += board;

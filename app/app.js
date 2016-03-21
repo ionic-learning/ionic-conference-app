@@ -8,11 +8,20 @@ import {TutorialPage} from './pages/tutorial/tutorial';
 import {TopicProvider} from './providers/topic-provider';
 import {SessionProvider} from './providers/session-provider';
 import {ProfileProvider} from './providers/profile-provider';
+import {ApiEndpoint} from './providers/api-endpoint';
 
 @App({
   templateUrl: 'build/app.html',
-  providers: [ConferenceData, UserData, TopicProvider, SessionProvider, ProfileProvider],
-  config: {}
+  providers: [ApiEndpoint, ConferenceData, UserData, 
+                TopicProvider, SessionProvider, ProfileProvider],
+  config: {
+    apiUrlPrefix: '',
+    platforms: {
+     ios: {
+       apiUrlPrefix: 'http://bbs.fudan.edu.cn',
+     }
+    }
+  }
 })
 class ConferenceApp {
   constructor(app: IonicApp, events: Events, confData: ConferenceData, userData: UserData) {
